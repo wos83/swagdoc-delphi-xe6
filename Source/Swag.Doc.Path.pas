@@ -170,7 +170,7 @@ begin
 
     if Assigned(vOperationJson.Values['deprecated']) then
       {$IF COMPILERVERSION <= 27}
-      vOperation.Deprecated := True;//(vOperationJson.Values['deprecated'] as TJSONBool).AsBoolean;
+      vOperation.Deprecated := True;
       {$ELSE}
       vOperation.Deprecated := (vOperationJson.Values['deprecated'] as TJSONBool).AsBoolean;
       {$ENDIF}

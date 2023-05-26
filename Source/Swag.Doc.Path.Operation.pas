@@ -257,7 +257,7 @@ begin
   
   if fDeprecated then
     {$IF COMPILERVERSION <= 27}
-    vJsonObject.AddPair(c_SwagPathOperationDeprecated, 'true');
+    vJsonObject.AddPair(c_SwagPathOperationDeprecated, TJSONTrue.Create);
     {$ELSE}
     vJsonObject.AddPair(c_SwagPathOperationDeprecated, TJSONBool.Create(fDeprecated));
     {$ENDIF}

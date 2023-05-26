@@ -196,14 +196,14 @@ begin
 
   if fRequired or (fInLocation = rpiPath) then
   {$IF COMPILERVERSION <= 27}
-    vJsonObject.AddPair(c_SwagRequestParameterRequired, 'true');
+    vJsonObject.AddPair(c_SwagRequestParameterRequired, TJSONTrue.Create);
   {$ELSE}
     vJsonObject.AddPair(c_SwagRequestParameterRequired, TJSONBool.Create(True));
   {$ENDIF}
 
   if fAllowEmptyValue and (fInLocation = rpiQuery) or (fInLocation = rpiFormData) then
   {$IF COMPILERVERSION <= 27}
-    vJsonObject.AddPair(c_SwagRequestParameterAllowEmptyValue, 'true');
+    vJsonObject.AddPair(c_SwagRequestParameterAllowEmptyValue, TJSONTrue.Create);
   {$ELSE}
     vJsonObject.AddPair(c_SwagRequestParameterAllowEmptyValue, TJSONBool.Create(True));
   {$ENDIF}
@@ -251,14 +251,14 @@ begin
   if Assigned(pJson.Values[c_SwagRequestParameterAllowEmptyValue]) and
     ((fInLocation = rpiQuery) or (fInLocation = rpiFormData)) then
   {$IF COMPILERVERSION <= 27}
-    fAllowEmptyValue := True;//(pJson.Values[c_SwagRequestParameterAllowEmptyValue] as TJSONValue);
+    fAllowEmptyValue := True;
   {$ELSE}
     fAllowEmptyValue := (pJson.Values[c_SwagRequestParameterAllowEmptyValue] as TJSONBool).AsBoolean;
   {$ENDIF}
 
   if Assigned(pJson.Values[c_SwagRequestParameterRequired]) then
   {$IF COMPILERVERSION <= 27}
-    fRequired := True //(pJson.Values[c_SwagRequestParameterRequired] as TJSONTrue)
+    fRequired := True
   {$ELSE}
     fRequired := (pJson.Values[c_SwagRequestParameterRequired] as TJSONBool).AsBoolean
   {$ENDIF}
